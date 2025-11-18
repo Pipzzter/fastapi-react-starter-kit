@@ -10,7 +10,6 @@ Kick-start fullstack projects with a FastAPI backend, room for a React frontend 
 
 ### Create & activate virtual environment
 ```powershell
-cd PythonProject\backend
 python -m venv .venv
 .\.venv\Scripts\Activate.ps1
 pip install -r requirements-dev.txt
@@ -28,7 +27,6 @@ docker compose up -d
 
 ### Apply database migrations (inside backend container)
 ```powershell
-cd PythonProject
 docker compose exec backend /bin/bash
 alembic revision --autogenerate -m "init schema"
 alembic upgrade head
@@ -37,8 +35,6 @@ exit
 
 ### Run the app locally (optional)
 ```powershell
-cd PythonProject\backend
-.\.venv\Scripts\Activate.ps1
 uvicorn app.main:app --reload
 ```
 
@@ -49,7 +45,6 @@ Copy `backend/.env.example` to `backend/.env` (and adjust secrets), then ensure 
 
 ### Run tests (inside backend container)
 ```powershell
-cd PythonProject
 docker compose exec backend /bin/bash
 pytest
 exit
@@ -57,8 +52,6 @@ exit
 
 ### Run tests (local virtual environment)
 ```powershell
-cd PythonProject\backend
-.\.venv\Scripts\Activate.ps1
 pytest
 ```
 

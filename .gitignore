@@ -4,3 +4,9 @@
 __pycache__/
 .env
 *.log
+*.py[cod]
+.pytest_cache/
+.venv/
+build/
+dist/
+.DS_Store

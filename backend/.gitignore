@@ -1,8 +1,0 @@
-__pycache__/
-*.py[cod]
-.pytest_cache/
-.env
-.venv/
-build/
-dist/
-.DS_Store
