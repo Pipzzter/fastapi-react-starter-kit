@@ -1,8 +1,7 @@
 from datetime import datetime
 from typing import Optional
 
-from pydantic import BaseModel, EmailStr
-from pydantic import ConfigDict
+from pydantic import BaseModel, ConfigDict, EmailStr
 
 
 class HealthResponse(BaseModel):

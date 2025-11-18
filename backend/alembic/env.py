@@ -1,11 +1,10 @@
 from logging.config import fileConfig
-from sqlalchemy import engine_from_config
-from sqlalchemy import pool
-from alembic import context
 
+import app.models  # noqa: F401
+from alembic import context
 from app.core.config import get_settings
 from app.db.base import Base
-import app.models  # noqa: F401
+from sqlalchemy import engine_from_config, pool
 
 settings = get_settings()
 config = context.config
@@ -19,7 +18,12 @@ target_metadata = Base.metadata
 
 def run_migrations_offline():
     url = config.get_main_option("sqlalchemy.url")
-    context.configure(url=url, target_metadata=target_metadata, literal_binds=True, dialect_opts={"paramstyle": "named"})
+    context.configure(
+        url=url,
+        target_metadata=target_metadata,
+        literal_binds=True,
+        dialect_opts={"paramstyle": "named"},
+    )
 
     with context.begin_transaction():
         context.run_migrations()
@@ -47,4 +51,3 @@ def run_migrations() -> None:
 
 
 run_migrations()
-

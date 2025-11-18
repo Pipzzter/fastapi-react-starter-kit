@@ -1,13 +1,13 @@
 import pytest
-from httpx import AsyncClient, ASGITransport
-
-from app.main import app
-from app.models.schemas import UserCreate
 
 
 @pytest.mark.asyncio
 async def test_register_and_login(api_client):
-    payload = {"email": "auth@example.com", "password": "secret", "full_name": "Auth User"}
+    payload = {
+        "email": "auth@example.com",
+        "password": "secret",
+        "full_name": "Auth User",
+    }
     response = await api_client.post("/api/v1/auth/register", json=payload)
     assert response.status_code == 201
     access_token = response.json()["access_token"]
@@ -17,4 +17,3 @@ async def test_register_and_login(api_client):
     response = await api_client.post("/api/v1/auth/token", data=form_data)
     assert response.status_code == 200
     assert "access_token" in response.json()
-

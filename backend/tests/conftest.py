@@ -1,15 +1,14 @@
 import asyncio
 
+import app.models  # noqa: F401
 import pytest
 import pytest_asyncio
-from httpx import AsyncClient, ASGITransport
-from sqlalchemy.ext.asyncio import AsyncSession, async_sessionmaker, create_async_engine
-from sqlalchemy.pool import StaticPool
-
 from app.db.base import Base
 from app.db.session import get_session
 from app.main import app as fastapi_app
-import app.models  # noqa: F401
+from httpx import ASGITransport, AsyncClient
+from sqlalchemy.ext.asyncio import AsyncSession, async_sessionmaker, create_async_engine
+from sqlalchemy.pool import StaticPool
 
 TEST_DATABASE_URL = "sqlite+aiosqlite:///:memory:"
 
@@ -37,7 +36,9 @@ async def db_engine():
 
 @pytest_asyncio.fixture()
 async def db_session(db_engine):
-    async_session = async_sessionmaker(db_engine, expire_on_commit=False, class_=AsyncSession)
+    async_session = async_sessionmaker(
+        db_engine, expire_on_commit=False, class_=AsyncSession
+    )
     async with async_session() as session:
         yield session
 

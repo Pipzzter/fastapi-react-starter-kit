@@ -1,7 +1,7 @@
-from dataclasses import dataclass, field
 import os
-from pathlib import Path
+from dataclasses import dataclass, field
 from functools import lru_cache
+from pathlib import Path
 
 from dotenv import load_dotenv
 
@@ -35,20 +35,30 @@ class Settings:
     environment: str = field(default_factory=lambda: _env_required("ENVIRONMENT"))
     api_v1_prefix: str = field(default_factory=lambda: _env_required("API_V1_PREFIX"))
     database_url: str = field(default_factory=lambda: _env_required("DATABASE_URL"))
-    postgres_server: str = field(default_factory=lambda: _env_required("POSTGRES_SERVER"))
-    postgres_port: int = field(default_factory=lambda: _env_required_int("POSTGRES_PORT"))
+    postgres_server: str = field(
+        default_factory=lambda: _env_required("POSTGRES_SERVER")
+    )
+    postgres_port: int = field(
+        default_factory=lambda: _env_required_int("POSTGRES_PORT")
+    )
     postgres_db: str = field(default_factory=lambda: _env_required("POSTGRES_DB"))
     postgres_user: str = field(default_factory=lambda: _env_required("POSTGRES_USER"))
-    postgres_password: str = field(default_factory=lambda: _env_required("POSTGRES_PASSWORD"))
+    postgres_password: str = field(
+        default_factory=lambda: _env_required("POSTGRES_PASSWORD")
+    )
     redis_url: str = field(default_factory=lambda: _env_required("REDIS_URL"))
     secret_key: str = field(default_factory=lambda: _env_required("SECRET_KEY"))
-    access_token_expire_minutes: int = field(default_factory=lambda: _env_required_int("ACCESS_TOKEN_EXPIRE_MINUTES"))
+    access_token_expire_minutes: int = field(
+        default_factory=lambda: _env_required_int("ACCESS_TOKEN_EXPIRE_MINUTES")
+    )
     jwt_algorithm: str = field(default_factory=lambda: _env_required("JWT_ALGORITHM"))
     email_from: str = field(default_factory=lambda: _env_required("EMAIL_FROM"))
     smtp_host: str = field(default_factory=lambda: _env_required("SMTP_HOST"))
     smtp_port: int = field(default_factory=lambda: _env_required_int("SMTP_PORT"))
     smtp_user: str | None = field(default_factory=lambda: _env_optional("SMTP_USER"))
-    smtp_password: str | None = field(default_factory=lambda: _env_optional("SMTP_PASSWORD"))
+    smtp_password: str | None = field(
+        default_factory=lambda: _env_optional("SMTP_PASSWORD")
+    )
 
 
 @lru_cache

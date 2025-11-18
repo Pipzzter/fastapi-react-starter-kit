@@ -80,10 +80,10 @@ Set `APP_ENV` to `development`, `staging`, or `production` to pick the matching 
 docker compose up -d
 
 # staging build/run
-docker compose up -d --build --pull always 
+docker compose up -d --build --pull always
 
 # production build/run
-docker compose up -d --build --pull always 
+docker compose up -d --build --pull always
 ```
 
 ## API quick reference

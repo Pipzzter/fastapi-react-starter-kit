@@ -20,6 +20,7 @@ def _collect_test_targets(files: Iterable[str]) -> list[str]:
             continue
         if "tests" not in path.parts:
             continue
+
         absolute = (REPO_ROOT / path).resolve()
         if REPO_ROOT in absolute.parents or absolute == REPO_ROOT:
             try:
@@ -51,6 +52,9 @@ def main(argv: list[str]) -> int:
     cmd = [sys.executable, "-m", "pytest", *test_targets]
     print("Running:", " ".join(cmd))
     result = subprocess.run(cmd, cwd=REPO_ROOT, env=env)
+    if result.returncode == 5:
+        print("Pytest returned exit code 5 (No tests collected). Treating as success.")
+        return 0
     return result.returncode
 
 
