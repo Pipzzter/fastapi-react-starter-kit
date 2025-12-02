@@ -1,5 +1,5 @@
 import pytest
-from app.models.schemas import UserCreate
+from app.schemas.user import UserCreate
 from app.services.users import UserService
 from pydantic import EmailStr, TypeAdapter
 from sqlalchemy.ext.asyncio import AsyncSession

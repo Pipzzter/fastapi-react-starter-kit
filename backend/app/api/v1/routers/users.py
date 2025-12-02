@@ -1,5 +1,5 @@
 from app.db.session import get_session
-from app.models.schemas import UserCreate, UserRead
+from app.schemas.user import UserCreate, UserRead
 from app.services.users import UserService
 from fastapi import APIRouter, Depends, HTTPException, status
 from sqlalchemy.ext.asyncio import AsyncSession

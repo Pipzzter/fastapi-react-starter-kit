@@ -1,4 +1,4 @@
-from app.models.schemas import HealthResponse
+from app.schemas.health import HealthResponse
 from app.services.health import HealthService
 from fastapi import APIRouter
 

@@ -1,5 +1,6 @@
 from app.db.session import get_session
-from app.models.schemas import Token, UserCreate
+from app.schemas.auth import Token
+from app.schemas.user import UserCreate
 from app.services.auth import AuthService
 from fastapi import APIRouter, Depends, status
 from fastapi.security import OAuth2PasswordRequestForm

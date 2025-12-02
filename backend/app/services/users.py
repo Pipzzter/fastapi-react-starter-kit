@@ -1,7 +1,7 @@
 from typing import List, Union
 
 from app.models import user as user_models
-from app.models.schemas import UserCreate, UserRead
+from app.schemas.user import UserCreate, UserRead
 from pydantic import EmailStr
 from sqlalchemy import select
 from sqlalchemy.ext.asyncio import AsyncSession

@@ -3,7 +3,8 @@ from typing import Optional
 
 from app.core.security import create_access_token, get_password_hash, verify_password
 from app.models import user as user_models
-from app.models.schemas import Token, UserCreate, UserRead
+from app.schemas.auth import Token
+from app.schemas.user import UserCreate, UserRead
 from app.services.users import UserService
 from fastapi import HTTPException, status
 from sqlalchemy.ext.asyncio import AsyncSession
