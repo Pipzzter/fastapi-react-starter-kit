@@ -1,20 +1,13 @@
 import pytest
 from app.schemas.user import UserCreate
 from app.services.user import UserService
-from pydantic import EmailStr, TypeAdapter
 from sqlalchemy.ext.asyncio import AsyncSession
-
-email_adapter = TypeAdapter(EmailStr)
-
-
-def make_email(value: str) -> EmailStr:
-    return email_adapter.validate_python(value)
 
 
 @pytest.mark.asyncio
 async def test_create_user(api_client, db_session: AsyncSession):
     payload = UserCreate(
-        email=make_email("user10@example.com"), password="secret", full_name="Test User"
+        email="user10@example.com", password="secret", full_name="Test User"
     )
     response = await api_client.post("/api/v1/user/", json=payload.model_dump())
     assert response.status_code == 201
@@ -31,7 +24,7 @@ async def test_create_user(api_client, db_session: AsyncSession):
 @pytest.mark.asyncio
 async def test_list_users(api_client):
     payload = UserCreate(
-        email=make_email("another@example.com"),
+        email="another@example.com",
         password="secret",
         full_name="Another User",
     )
@@ -45,9 +38,7 @@ async def test_list_users(api_client):
 
 @pytest.mark.asyncio
 async def test_create_user_duplicate_email(api_client):
-    payload = UserCreate(
-        email=make_email("dupe@example.com"), password="secret", full_name="Dupe"
-    )
+    payload = UserCreate(email="dupe@example.com", password="secret", full_name="Dupe")
     first = await api_client.post("/api/v1/user/", json=payload.model_dump())
     assert first.status_code == 201
     duplicate = await api_client.post("/api/v1/user/", json=payload.model_dump())
