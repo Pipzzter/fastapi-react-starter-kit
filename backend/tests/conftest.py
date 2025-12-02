@@ -1,6 +1,5 @@
 import asyncio
 
-import app.models  # noqa: F401
 import pytest
 import pytest_asyncio
 from app.db.base import Base

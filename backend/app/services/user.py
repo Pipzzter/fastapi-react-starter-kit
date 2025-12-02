@@ -4,7 +4,6 @@ from typing import List, Union
 from app.core.security import get_password_hash
 from app.models import user as user_models
 from app.schemas.user import UserCreate, UserRead
-from pydantic import EmailStr
 from sqlalchemy import select
 from sqlalchemy.ext.asyncio import AsyncSession
 
@@ -15,9 +14,7 @@ class UserService:
     def __init__(self, session: AsyncSession) -> None:
         self.session = session
 
-    async def get_by_email(
-        self, email: Union[str, EmailStr]
-    ) -> user_models.User | None:
+    async def get_by_email(self, email: Union[str, str]) -> user_models.User | None:
         result = await self.session.execute(
             select(user_models.User).where(user_models.User.email == str(email))
         )

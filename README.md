@@ -81,7 +81,7 @@ docker compose up -d --build --pull always
 
 ## API quick reference
 - `GET /api/v1/health/` – service heartbeat (returns status/timestamp)
-- `POST /api/v1/users/` – create user (requires JSON payload matching `UserCreate`)
-- `GET /api/v1/users/` – list users
+- `POST /api/v1/user/` – create user (requires JSON payload matching `UserCreate`)
+- `GET /api/v1/user/` – list users
 - `POST /api/v1/auth/register` – register user & receive JWT
 - `POST /api/v1/auth/token` – obtain JWT via credentials form

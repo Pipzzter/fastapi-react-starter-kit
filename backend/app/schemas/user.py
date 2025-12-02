@@ -4,7 +4,7 @@ from pydantic import BaseModel, ConfigDict, EmailStr
 
 
 class UserBase(BaseModel):
-    email: str
+    email: EmailStr
     full_name: Optional[str] = None
 
 
