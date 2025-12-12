@@ -1,0 +1,15 @@
+node_modules
+dist
+.git
+.gitignore
+*.md
+.vscode
+.idea
+*.log
+.env*.local
+coverage
+.nyc_output
+__pycache__
+*.pyc
+.pytest_cache
+.venv

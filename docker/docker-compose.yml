@@ -1,12 +1,12 @@
 services:
   backend:
     build:
-      context: .
-      dockerfile: Dockerfile
+      context: ..
+      dockerfile: docker/backend/Dockerfile
       target: ${APP_ENV:-development}
     container_name: backend
     env_file:
-      - backend/.env
+      - ../backend/.env
     environment:
       - APP_ENV=${APP_ENV:-development}
     ports:
@@ -15,15 +15,30 @@ services:
       db:
         condition: service_healthy
     volumes:
-      - ./backend:/app
+      - ../backend:/app
+
+  frontend:
+    build:
+      context: ..
+      dockerfile: docker/frontend/Dockerfile
+      target: ${APP_ENV:-development}
+    container_name: frontend
+    ports:
+      - "5173:5173"
+    volumes:
+      - ../frontend:/app
+      - /app/node_modules
+    depends_on:
+      - backend
+    environment:
+      - VITE_API_URL=http://localhost:8000
 
   db:
     image: postgres:latest
-
     container_name: postgres
     restart: unless-stopped
     env_file:
-      - backend/.env
+      - ../backend/.env
     ports:
       - "5432:5432"
     volumes:
